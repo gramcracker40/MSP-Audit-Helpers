@@ -1,12 +1,41 @@
-### MSP Audit Helpers
+### Project Summary: MSP Audit Helpers
 
-## Purpose
---- Our auditing system is meant to give us insight to the products we are currently providing. 
-    This may include profit margins, quantity mishaps across the dashboards/agreements, how much
-    an individual addition is costing us, how much total cost is associated with a single client, 
-    etc. With this now automated we can use the data gathered to improve our position amongst
-    our clients financially, ensure our clients are being provided the agreed upon amounts, and 
-    find any loopholes or discrepancies across the accounts. 
+#### Overview
+The MSP Audit Helpers project is designed to enhance and automate the auditing process for managed service providers (MSPs). This system focuses on analyzing various aspects of service delivery, including profit margins, service quantities, and overall costs associated with individual clients. By automating these audits, MSPs can improve their financial standing, ensure accurate service delivery, and identify any inconsistencies or errors in their accounts.
+  Utilizes APIs from Liongard, Huntress, Connectwise and even SentinelOne to gather endpoint installation data surrounding the SaaS products. 
+
+#### Components
+1. **additions_audit.py**
+   - **Dependencies**: Requires two files in the `Additions-Audit-Data` folder.
+   - **Functionality**: Analyzes 'managed service' products, calculating total profit, cost, and margin for each. Outputs two files: 
+     - `clean_additions_individuals.csv`: Details each managed service addition with the company and related calculations.
+     - `clean_additions_totals.csv`: Summarizes totals for each product, aggregating individual additions.
+   - **Purpose**: Provides insights into profits and costs associated with managed service agreements.
+
+2. **products_audit.py**
+   - **Dependencies**: Needs `DeviceInventoryReport.csv` from `rmm_audit.py` in `RMM-Audit-Data`.
+   - **Functionality**: Integrates four scripts to track and verify the service counts of products (RMM, Cove, Huntress, Sentinel One) against client agreements. Highlights discrepancies in respective CSV files (e.g., `discrepancies_rmm.csv`).
+   - **Purpose**: Ensures delivery of services as per client agreements, highlighting any over or under-servicing.
+
+#### Usage Guide
+
+1. **Setup**
+   - Ensure all prerequisite files and folders are in place as per the dependencies of each script.
+   - Review the information at the top of each script file for specific setup instructions.
+
+2. **Running the Scripts**
+   - Execute `additions_audit.py` to generate reports on individual and total managed service products.
+   - Run `products_audit.py` after generating `DeviceInventoryReport.csv` via `rmm_audit.py`. This will audit the counts of various serviced products.
+
+3. **Analyzing Outputs**
+   - For `additions_audit.py`, examine `clean_additions_individuals.csv` for detailed insights and `clean_additions_totals.csv` for aggregated data.
+   - For `products_audit.py`, refer to the generated CSV files (like `discrepancies_rmm.csv`) to identify and address any service count discrepancies.
+
+4. **Action Steps**
+   - Use the insights from `additions_audit.py` to optimize financials and product delivery.
+   - Resolve discrepancies highlighted by `products_audit.py` to align actual service delivery with client agreements.
+
+
 
 # additions_audit.py
 --- NOTE: This file needs two files to run properly placed within Additions-Audit-Data, 
